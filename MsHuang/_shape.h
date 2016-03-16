@@ -39,9 +39,13 @@ class Cuboid : public Rectangle
 		{
 			return a * b * h;
 		} 
-		int getCircum()		//求周长（Circumference） 
+		int getCircum()		//求周长（Circumference） ——要重写基类的函数~~~ 
 		{
 			return a * 4 + b * 4 + h * 4;
+		}
+		int getSquare_all()		//求总面积 
+		{
+			return a * b * 2 + a * h * 2 + b * h * 2;
 		}
 };
 
