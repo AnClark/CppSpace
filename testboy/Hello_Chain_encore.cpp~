@@ -92,24 +92,25 @@ void insert_item(node *head, const int key, const int newdata)
 			}
 			p=p->next;		//继续遍历直到找到关键字/到达链尾
 		}
-	}
-	//情形三：关键字不在链表中。我们规定，将新项目插入到链表最后
-	if(!found)
-	{
+		//情形三：关键字不在链表中。我们规定，将新项目插入到链表最后
+		if(!found)
+		{
 
-		//找到链表的最后一项
-		while(p->next != NULL)
-			p=p->next;
+			//找到链表的最后一项
+			while(p->next != NULL)
+				p=p->next;
 		
-		//创建新结点
-		newnode = new node;
-		newnode->data = newdata;
+			//创建新结点
+			newnode = new node;
+			newnode->data = newdata;
 		
-		p->next=newnode;		//链尾接到新结点
-		newnode->next=NULL;		//新结点成为新的链尾，链表结束，故接到空指针
+			p->next=newnode;		//链尾接到新结点
+			newnode->next=NULL;		//新结点成为新的链尾，链表结束，故接到空指针
 		
-	}
+		}
 	
+	}
+
 }
 
 int main()
@@ -130,6 +131,7 @@ int main()
 	cout<<endl;
 	print_chain(fy_head);	
 
+	//善后	删除头指针，释放内存
 	delete fy_head;
 
 	return 0;
