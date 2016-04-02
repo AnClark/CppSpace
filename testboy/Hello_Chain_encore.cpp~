@@ -113,6 +113,31 @@ void insert_item(node *head, const int key, const int newdata)
 
 }
 
+
+void remove_item(node *head, int key)
+{
+	node *p=head->next;
+	node *q;
+
+	if(p->data == key)
+		head->next=p->next;
+	else
+	{
+		while(p->next != NULL){
+			q=p->next;	
+			if(q->data == key)
+			{
+				p->next=q->next;
+				break;
+			}
+			p=p->next;
+		}		
+			
+	}
+
+}
+
+
 int main()
 {
 	//测试一	生成链表
@@ -123,10 +148,19 @@ int main()
 	cout<<endl;
 	print_chain(fy_head);		
 
+
 	//测试三	插入链表项并输出修改后的链表
 	int key,newdata;
-	cin>>key>>newdata;
-	insert_item(fy_head, key, newdata);
+	//cin>>key>>newdata;
+	//insert_item(fy_head, key, newdata);
+
+	//cout<<endl;
+	//print_chain(fy_head);	
+
+	
+	//测试四	删除链表项
+	cin>>key;
+	remove_item(fy_head, key);
 
 	cout<<endl;
 	print_chain(fy_head);	

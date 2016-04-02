@@ -113,6 +113,35 @@ void insert_item(node *head, const int key, const int newdata)
 
 }
 
+
+void remove_item(node *head, int key)
+{
+	node *p=head->next;		//工作指针，指向链表第一项
+	node *q;			//辅助工作指针，在情形二使用
+
+
+	//情形一：要删除的项目为链表第一项	
+	if(p->data == key)
+		head->next=p->next;		//直接将头指针接到第二结点，即可实现删除
+	else
+	//情形二：要删除的项目非链表第一项
+	{
+		//根据课本的算法：工作指针指向关键字的*前一项*，辅助工作指针指向关键字
+		while(p->next != NULL){			//遍历链表各结点
+			q=p->next;		//辅助指针指向关键字
+			if(q->data == key)
+			{
+				p->next=q->next;	//直接将关键字前一结点指向关键字后一结点，即可实现删除
+				break;		//跳出循环
+			}
+			p=p->next;		//遍历直到所有结点被遍历完毕
+		}		
+			
+	}
+
+}
+
+
 int main()
 {
 	//测试一	生成链表
@@ -123,10 +152,19 @@ int main()
 	cout<<endl;
 	print_chain(fy_head);		
 
+
 	//测试三	插入链表项并输出修改后的链表
 	int key,newdata;
-	cin>>key>>newdata;
-	insert_item(fy_head, key, newdata);
+	//cin>>key>>newdata;
+	//insert_item(fy_head, key, newdata);
+
+	//cout<<endl;
+	//print_chain(fy_head);	
+
+	
+	//测试四	删除链表项
+	cin>>key;
+	remove_item(fy_head, key);
 
 	cout<<endl;
 	print_chain(fy_head);	
