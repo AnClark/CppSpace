@@ -26,9 +26,8 @@ node *gen_chain()
 		p->data=n;		//填入数据
 
 		//将链表已建立的节点与新建的节点连接起来
-		//这两句我不太理解。。。。。。
-		tail->next=p;
-		tail=p;
+		tail->next=p;			//新结点接到链尾
+		tail=p;				//尾指针到链尾
 	}
 
 
@@ -41,7 +40,7 @@ node *gen_chain()
 }
 
 
-void print_chain(node *head)
+void print_chain(const node *head)
 {
 	node *p=head->next;
 	
@@ -56,6 +55,60 @@ void print_chain(node *head)
 }
 
 
+void insert_item(node *head, const int key, const int newdata)
+{
+	//插入新结点，需要分类讨论
+	//先查找关键字
+	node *p=head->next;
+	node *q;
+	node *newnode;	
+	bool found=false;
+
+	//情形一：关键字是链表的第一项，则插入到表头
+	if(p->data == key)
+	{
+		newnode= new node;
+		newnode->data=newdata;
+
+		newnode->next=head->next;		
+		head->next=newnode;
+	}
+	//情形二：关键字在链表中，则插入到关键字的前一项
+	else
+	{
+		while((p != NULL) && (p->next != NULL))
+		{
+			q=p->next;
+			if(q->data == key){
+				newnode = new node;
+				newnode->data=newdata;
+				
+				p->next=newnode;				
+				newnode->next=q;
+
+				found=true; break;
+			}
+			p=p->next;
+		}
+	}
+	//情形三：关键字不在链表中，则搜索算法已经将工作指针移到了链表的最后。将新项目插入到链表最后
+	if(!found)
+	{
+
+		//找到链表的最后一项
+		while(p->next != NULL)
+			p=p->next;
+		
+		newnode = new node;
+		newnode->data = newdata;
+		
+		p->next=newnode;
+		newnode->next=NULL;
+		
+	}
+	
+}
+
 int main()
 {
 	node *fy_head;
@@ -63,8 +116,16 @@ int main()
 	
 	cout<<endl;
 	print_chain(fy_head);		
-		
+
+	int key,newdata;
+	cin>>key>>newdata;
+	insert_item(fy_head, key, newdata);
+
+	cout<<endl;
+	print_chain(fy_head);	
+
 	delete fy_head;
 
 	return 0;
 }
+
