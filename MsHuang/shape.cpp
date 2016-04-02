@@ -42,8 +42,7 @@ Rectangle::int getCircum()
  
 
 
-Cuboid::Cuboid(const int val_a, const int val_b, const int val_h) 
-	: Rectangle(val_a,val_b)
+Cuboid::Cuboid(const int val_a, const int val_b, const int val_h)  : Rectangle(val_a,val_b)
 	{
 		h=val_h;
 	}

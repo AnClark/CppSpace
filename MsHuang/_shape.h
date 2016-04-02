@@ -5,7 +5,7 @@ using namespace std;
 //基类：矩形 
 class Rectangle
 {
-	protected:
+	protected:	//注意继承关键字！如果写成private，就根本没法访问！ 
 		int a;		//矩形长
 		int b;		//矩形宽
 	public:
@@ -14,7 +14,7 @@ class Rectangle
 		//virtual ~Rectangle();		//默认析构函数
 		
 		//功能性一般成员函数
-		int getSquare()		//求（底）面积
+		int getSquare()		//求面积
 		{
 			return a * b;
 		} 
